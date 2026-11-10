@@ -1,0 +1,22 @@
+services:
+  freeswitch:
+    build:
+      context: .
+      dockerfile: ./docker/fs.Dockerfile
+    image: fs:latest
+    container_name: freeswitch
+    restart: unless-stopped
+    network_mode: host # Best on Linux for SIP/RTP
+    volumes:
+      - ./freeswitch:/etc/freeswitch
+      #   - ./freeswitch/recordings:/var/lib/freeswitch/recordings
+      - ./freeswitch/log:/var/log/freeswitch
+    environment:
+      - SOUND_RATES=8000:16000
+    # If not using host mode (e.g. on Mac/Windows):
+    # ports:
+    #   - "5060:5060/udp"
+    #   - "5060:5060/tcp"
+    #   - "8021:8021/tcp"        # ESL (Event Socket Library)
+    #   - "7443:7443/tcp"        # WebRTC WSS
+    #   - "16384-16484:16384-16484/udp" # Trimmed RTP range
