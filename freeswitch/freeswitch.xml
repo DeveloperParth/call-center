@@ -40,7 +40,7 @@
 
   <section name="configuration" description="Various Configuration">
     <X-PRE-PROCESS cmd="include" data="autoload_configs/*.xml"/>
-  </section>a
+  </section>
 
   <section name="dialplan" description="Regex/XML Dialplan">
     <X-PRE-PROCESS cmd="include" data="dialplan/*.xml"/>
